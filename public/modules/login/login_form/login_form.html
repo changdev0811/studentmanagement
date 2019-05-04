@@ -1,0 +1,26 @@
+<div class='slider'>
+    <div class='slide1'>
+        <div class="sildeOverlay"></div>
+    </div>
+    <div class='slide2'>
+        <div class="sildeOverlay"></div>
+    </div>
+    <div class='slide3'>
+        <div class="sildeOverlay"></div>
+    </div>
+</div>
+<div class="row">
+    <div class="login">
+        <div class="card login-padding">
+            <h3>Bitte melden Sie sich an.</h3>
+            <br>
+            <form ng-submit="login()" ng-controller="loginCtrl" class="login-button">
+                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Benutzername" ng-model="username">
+                <br>
+                <input type="password" class="form-control" id="inputPassword" placeholder="Passwort" ng-model="password">
+                <br>
+                <button type="submit" class="btn btn-primary btn-fill">Login</button>
+            </form>
+        </div>
+    </div>
+</div>

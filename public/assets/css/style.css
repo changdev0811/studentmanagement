@@ -1,0 +1,327 @@
+
+.login { 
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -150px 0 0 -150px;
+	padding: 20px;
+	width: 300px;
+}
+.form-control-textarea {
+	width: 100%;
+	border-color: white;
+	outline: none;
+}
+
+.largeWidth {
+	width: 90%;
+}
+
+.statusRow {
+  width: 8%;
+}
+
+textarea {
+	resize: none;
+	color: black;
+	height: 120px;
+}
+
+.textarea2 {
+	resize: none;
+	color: black;
+	height: 60px;
+}
+
+.textarea3 {
+	resize: none;
+	color: black;
+	height: 25px;
+}
+
+textarea:disabled {
+	background-color: white;
+	border:none;
+	
+}
+
+table.floatThead-table {
+	border-top: none;
+	border-bottom: none;
+	background-color: #fff;
+}
+
+.editTextarea {
+	border-radius: 5px;
+	width: 99%;
+}
+
+.icon-hover:hover {
+	color: white;
+	background-color:#0099ff;
+}
+
+#fixTable {
+	min-width: 1500px !important;
+	width: 100%;
+	table-layout: fixed;
+}
+
+.table-editable {
+  position: relative;
+  
+  .glyphicon {
+    font-size: 20px;
+  }
+}
+
+.table2 td{ height: 245px };
+.table3 td{ height: 30px };
+
+#header-fixed { 
+	position: fixed; 
+	top: 60px; display:none;
+	background-color:white;
+}
+
+#header-fixed2 { 
+	position: fixed; 
+	top: 60px; display:none;
+	background-color:white;
+}
+
+.css-checkbox-div {
+	padding-left: 10px;
+}
+
+label.css-label {
+	font-size: 20px;
+}
+
+.login-button {
+	text-align: center;
+}
+
+.login h3 { color: rgb(0, 68, 151); letter-spacing:1px; text-align:center; }
+
+.modal-body h4 {margin-top:0px;}
+
+.small-text{
+  font-size: 13px; 
+}
+
+.medium-text{
+  font-size: 20px; 
+}
+
+.actions{
+	
+	background-color: rgba(25, 107, 201, 0.959);
+	text-align: center;
+}
+
+.actions-padding {
+	padding-top: 2px;
+	padding-bottom: 30px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.login-padding {
+	padding-top: 2px;
+	padding-bottom: 30px;
+	padding-left: 13px;
+	padding-right: 13px;
+}
+
+.actions > div > h4 {
+	color: white;
+}
+
+.actions-light{
+	background-color: rgba(51, 150, 255, 0.712);
+}
+
+.actions-lighter{
+	background-color: #52a3ffb6;
+}
+
+input:focus{
+	border-color: #52a3ffb6;
+}
+
+.select > option {
+	border-color: #52a3ffb6;
+}
+
+.btn-margin {
+  margin-right: 3px;
+}
+
+.bglogin {
+	height: 800px;
+	width: 100%;
+	
+}
+
+.navbar-fixed {
+	position: fixed;
+	right: 0;
+	width: calc(100% - 260px);
+	z-index: 1030;
+}
+
+@media (max-width: 991px) {
+	.navbar-fixed {
+		position: fixed;
+		right: 0;
+		width:100%;
+		z-index: 1030;
+	}
+}
+
+.main-panel .navbar-fixed+.content {
+    padding-top: 120px;
+}
+
+.profil-user .profil-photo {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+  margin-left: 30%;
+	float: left;
+	z-index: 5;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .user .photo {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	border-radius: 50%;
+  margin-left: 30%;
+	float: left;
+	z-index: 5;
+	border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .user-nav {
+	padding-top: 3%;
+	border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+ 
+.loader {
+	border: 16px solid #dddddd;
+	border-radius: 50%;
+	border-top: 16px solid #2184c7;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite; /* Safari */
+	animation: spin 2s linear infinite; 
+	position: absolute;
+	left: 29%;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); }
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+
+  .sildeOverlay {
+	max-width: 100%;
+	height: 850px;
+	position: relative;
+	background-color: #00000093
+	}
+	
+	@media(min-height:1100px){
+		.sildeOverlay{
+			height: 1185px;
+		}
+	}
+
+	@media(max-height:812px){
+		.sildeOverlay {
+			height: 650px;
+			}
+	}
+
+  .slider {
+	max-width: 100%;
+	height: 850px;
+	position: relative;
+	}
+	
+	@media(min-height:1100px){
+		.slider {
+			height: 1185px;
+			}
+	}
+
+	@media(max-height:812px){
+		.slider {
+			height: 650px;
+			}
+	}
+
+  .slide1,.slide2,.slide3,.slide4,.slide5 {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+  }
+  .slide1 {
+	background: url(../img/play-stone.jpg)no-repeat center;
+		background-size: cover;
+	  animation:fade 16s infinite;
+  -webkit-animation:fade 16s infinite;
+  
+  } 
+  .slide2 {
+	background: url(../img/picking-flowers.jpg)no-repeat center;
+		background-size: cover;
+	  animation:fade2 16s infinite;
+  -webkit-animation:fade2 16s infinite;
+  }
+  .slide3 {
+	  background: url(../img/games.jpg)no-repeat center;
+		background-size: cover;
+	  animation:fade3 16s infinite;
+  -webkit-animation:fade3 16s infinite;
+	}
+	
+  @keyframes fade
+  {
+	0%   {opacity:1}
+	33.333% { opacity: 0}
+	66.666% { opacity: 0}
+	100% { opacity: 1}
+  }
+  @keyframes fade2
+  {
+	0%   {opacity:0}
+	33.333% { opacity: 1}
+	66.666% { opacity: 0 }
+	100% { opacity: 0}
+  }
+  @keyframes fade3
+  {
+	0%   {opacity:0}
+	33.333% { opacity: 0}
+	66.666% { opacity: 1}
+	100% { opacity: 0}
+	}
+	
+	.maintenance {
+		height: 50%;
+		width: 50%;
+		display: block;
+    margin-left: auto;
+    margin-right: auto;
+	}

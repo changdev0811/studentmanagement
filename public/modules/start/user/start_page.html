@@ -1,0 +1,130 @@
+<div class="row" ng-controller="kitaCtrl">
+    <div class="col-md-12">
+
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Tagesheft</h3>
+                <p class="category">Übersicht über alle Kita-Tage Ihres Kindes.</p>
+            </div>
+            <div class="content">
+                <div class="row" >
+                        <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 text-right" style="background-color:rgba(15, 131, 255, 0.562);height:100px;">
+                                <a href="" ng-click="dateBefore()">
+                                    <span class="pe-7s-angle-left-circle" style="font-size: 50px; color:white;margin-top:25px;"></span>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8 text-center" style="background-color:rgba(15, 131, 255, 0.562);height:100px;">
+                                <h3 style="color:white;margin-top:35px;">{{dateDay}}</h3>
+                            </div>
+
+                    <div class="col-xs-3 col-sm-2 col-md-2 col-lg-2 text-left" style="background-color:rgba(15, 131, 255, 0.562);height:100px;">
+                            <a href="" ng-click="dateNext()">
+                                <span class="pe-7s-angle-right-circle" style="font-size: 50px; color:white;margin-top:25px;"></span>
+                            </a>
+                        </div>
+                </div>
+
+                <div class="row" ng-show="hasDaily">
+                    <div class="col-xs-4 col-sm-4 col-md-3 col-lg-2">
+                        <div id="table">
+                            <table class="table table2 table-editable">
+                                <thead>
+                                    <tr>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);font-weight:bold;">Datum</th>
+                                        <th style="background-color:rgba(15, 131, 255, 0.562);width:1px;height:100%;"></th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="kidDaily in kidsDaily3">
+                                    <tr>
+                                        <td ng-style="kidDaily.colorRow">{{kidDaily.date}}
+
+                                                <br>
+                                                <br>
+    
+                                                <i ng-if="kidDaily.contenteditable == false && kidDaily.Status == '4'" class="pe-7s-user" style="font-size: 3em; color:green;"></i>
+    
+                                                <i ng-if="kidDaily.contenteditable == false && kidDaily.Status == '3'" class="pe-7s-close-circle" style="font-size: 3em; color:red;"></i>
+    
+
+                                        </td>
+                                        <td style="background-color:rgba(15, 131, 255, 0.562);width:1px;height:100%;"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-8 col-sm-8 col-md-9 col-lg-10" style="margin-left:0px;">
+                        <div id="table">
+                            <table class="table table2 table-editable" id="fixTable">
+                                <thead>
+                                    <tr>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Info Morgen</th>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Info Abend</th>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Essen</th>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Aktivitäten Morgen</th>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Schlafen</th>
+                                        <th class="cellWidth" style="color:rgb(15, 139, 255);">Aktivitäten Nachmittag</th>
+                                    </tr>
+                                </thead>
+                                <tbody ng-repeat="kidDaily in kidsDaily3">
+                                    <tr>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <textarea ng-keyup="handleTextAreaHeight($event)" class="editTextarea" ng-model="kidDaily.InfoMorgen" ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <textarea ng-keyup="handleTextAreaHeight($event)" class="editTextarea" ng-model="kidDaily.InfoAbend" ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <textarea ng-keyup="handleTextAreaHeight($event)" class="editTextarea" ng-model="kidDaily.Essen" ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <div class="selectDiv">
+                                                <select class="select" ng-disabled="!kidDaily.contenteditable" name="slct" ng-options="action.value as action.text for action in actions"
+                                                    ng-model="kidDaily.ActionSelMorgenSel"></select>
+                                            </div>
+                                            <br>
+                                            <a ng-show="kidDaily.actionImageMorg != ''" href="" ng-click="showActionImage(kidDaily.ActionSelMorgenSel, kidDaily.actionImageMorg)">
+                                                    <img class="avatar border-gray" src="{{kidDaily.actionImageMorg}}" style="width:70px;height:70px;" />
+                                            </a>
+                                            <br>                                            <br>
+                                            <textarea ng-style="kidDaily.colorTextArea" ng-keyup="handleTextAreaHeight($event)" class="editTextarea textarea2" ng-model="kidDaily.ActionMorgen"
+                                                ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <textarea ng-keyup="handleTextAreaHeight($event)" class="editTextarea" ng-model="kidDaily.Schlafen" ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                        <td ng-style="kidDaily.colorRow">
+                                            <div class="selectDiv">
+                                                <select class="select" ng-disabled="!kidDaily.contenteditable" name="slct" ng-options="action.value as action.text for action in actions"
+                                                    ng-model="kidDaily.ActionSelNachmSel"></select>
+                                            </div>
+                                            <br>
+                                            <a ng-show="kidDaily.actionImageNachm != ''" href="" ng-click="showActionImage(kidDaily.ActionSelNachmSel, kidDaily.actionImageNachm)"> 
+                                                    <img class="avatar border-gray" src="{{kidDaily.actionImageNachm}}" style="width:70px;height:70px;" />
+                                            </a>
+                                            <br>
+                                            <textarea ng-style="kidDaily.colorTextArea" ng-keyup="handleTextAreaHeight($event)" class="editTextarea textarea2" ng-model="kidDaily.ActionNachm"
+                                                ng-disabled="!kidDaily.contenteditable"></textarea>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="row" ng-show="!hasDaily">
+                        <div class="col-sm-12 col-md-12 text-center">
+
+                            <h3>Kein Kita-Tag vorhanden</h3>
+
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+</div>

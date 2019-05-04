@@ -1,0 +1,50 @@
+<div id="chatview" ng-show="visible" class="row chat-window col-xs-5 col-md-3 {{vm.theme}}" ng-class="{minimized: vm.isHidden}" style="margin-top: -1em;">
+    <div class="col-xs-12 col-md-12">
+        <div class="panel">
+            <div class="panel-heading chat-top-bar" style="height: 3em; ">
+                <div class="col-md-8 col-xs-8">
+                    <h3 class="panel-title"><span class="fa fa-comment-o"></span> {{vm.title}}</h3>
+                </div>
+                <div class="col-md-4 col-xs-4 window-actions" style="text-align: right;">
+                    <span id="closeIcon" class="fa fa-close" ng-click="vm.close()"></span>
+                </div>
+            </div>
+            <div id="outerslide" class="dragscroll" style="background-color: #4b70b7; padding: 5px; overflow: auto; overflow-y : hidden;" >
+                <div class="image-slider-wrapper" style="width: 2000px; ">
+                    <ul id="image_slider" style="position: relative; height: 45px; padding:0;">
+                        <li id="img_teacher" style="float:left; list-style: none;" ng-repeat="teacher in vm.teachers">
+                            <span class="notify-badge" ng-show="teacher.badge > 0">{{teacher.badge}}</span>
+                            <img class="img_wrap" src="{{teacher.uImage}}" alt="{{teacher.info}}" title="{{teacher.info}}" ng-click="teacherClick(teacher)" style="width:45px; height: 45px; padding-right: 5px;border-radius: 50%;" />
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+            
+            <div class="panel-body msg-container-base" ng-style="vm.panelStyle">
+                <div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">
+                    <div class="col-md-12 col-xs-12">
+                        <div class="chat-msg" ng-class="{'chat-msg-sent': selfAuthored, 'chat-msg-recieved': !selfAuthored}">
+                            <span class="hide">myUserId:{{vm.myUserId}}</span>
+                            <img ng-if="message.imageUrl" style="width:35px; height: 35px; margin-right: 10px;border-radius: 50%;" class="profile" ng-class="{'pull-right': selfAuthored, 'pull-left': !selfAuthored}" ng-src="{{message.imageUrl}}" />
+                            <p class="medium-text">{{message.content}}</p>
+                            <div class="chat-msg-author small-text text-right">
+                               <span class="date">{{message.date|date:hh:mm:a}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-footer chat-bottom-bar">
+                <form style="display:inherit" ng-submit="vm.submitFunction()">
+                    <div class="input-group" >
+                        <input type="text" class="form-control input-sm" placeholder="{{vm.inputPlaceholderText}}" ng-model="vm.writingMessage" />
+                        <span class="input-group-btn">
+                            <input type="submit" class="btn btn-sm chat-submit-button" value="{{vm.submitButtonText}}" />
+                        </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

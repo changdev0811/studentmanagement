@@ -1,0 +1,218 @@
+<div class="row" ng-controller="userCtrl">
+    <div class="col-md-4">
+        <div class="card card-user">
+            <div class="image">
+                <img src="assets/img/kid-01.jpg" alt="..." />
+            </div>
+            <div class="content">
+                <div class="author">
+
+                    <a ui-sref="" ng-click="editProfilPic()">
+                        <img class="avatar border-gray" src="{{profilPathImg}}" style="width:124px;" />
+                    </a>
+                    <h4 class="title">{{first_name}} {{last_name}}
+                        <br />
+                        <small>{{username}}</small>
+                    </h4>
+                </div>
+                <br>
+                <p class="description text-center"> {{description}} </p>
+            </div>
+            <hr>
+        </div>
+
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Sicherheit</h4>
+            </div>
+            <div class="content">
+
+                    <form>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Neues Passwort</label>
+                                    <input type="password" class="form-control" id="newPw" placeholder="Neues Passwort" ng-model="newPw">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>Passwort wiederhohlen</label>
+                                    <input type="password" class="form-control" id="newPw2" placeholder="Neues Passwort" ng-model="newPw2">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <a ng-click="editPw()" class="btn btn-primary pull-right btn-fill">ändern</a>
+                                </div>
+                            </div>
+                        </div>
+
+                     
+
+                    </form>
+
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Mein Profil</h4>
+            </div>
+            <div class="content">
+                <form name="ProfilForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Kita-Name</label>
+
+                                <input type="text" class="form-control" disabled placeholder="Kita-Name" ng-model="kitaname">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Benutzername</label>
+                                <input type="text" class="form-control" disabled placeholder="Benutzername" name="username" id="username" ng-model="username"
+                                    required ng-blur="usernameChecker()">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Vorname</label>
+                                <input type="text" class="form-control" placeholder="Vorname" name="first_name" id="first_name" ng-pattern="/^[a-zA-Z\s]*$/"
+                                    ng-minlength="1" ng-model="first_name" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.first_name.$touched && !ProfilForm.first_name.$error.minlength && !ProfilForm.first_name.$valid">Der Vorname darf keine Zahlenwerte enthalten.</p>
+                            <p class="text-danger" ng-show="ProfilForm.first_name.$error.required && ProfilForm.first_name.$touched">Der Vorname darf nicht leer sein.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Nachname</label>
+                                <input type="text" class="form-control" placeholder="Nachname" name="last_name" id="last_name" ng-pattern="/^[a-zA-Z\s]*$/"
+                                    ng-minlength="1" ng-model="last_name" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.last_name.$touched && !ProfilForm.last_name.$error.minlength && !ProfilForm.last_name.$valid">Der Nachname darf keine Zahlenwerte enthalten.</p>
+                            <p class="text-danger" ng-show="ProfilForm.last_name.$error.required && ProfilForm.last_name.$touched">Der Nachname darf nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Geburtsdatum</label>
+                                <input disabled type="date" class="form-control" placeholder="Geburtsdatum" name="birth_date" id="birth_date" ng-model="birth_date"
+                                    required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.birth_date.$error.required && ProfilForm.birth_date.$touched">Das Geburtsdatum darf nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>PLZ</label>
+                                <input type="number" class="form-control" placeholder="PLZ" name="plz" id="plz" ng-model="plz" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.plz.$error.required && ProfilForm.plz.$touched">Die Postleizahl darf nicht leer sein.</p>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Ort</label>
+                                <input type="text" class="form-control" placeholder="Ort" name="ort" id="ort" ng-model="ort" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.ort.$error.required && ProfilForm.ort.$touched">Der Ort darf nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <label>Strasse</label>
+                                <input type="text" class="form-control" placeholder="Strasse" name="street" id="street" ng-pattern="/^[a-zA-Z\s]*$/" ng-minlength="1"
+                                    ng-model="street" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.street.$touched && !ProfilForm.street.$error.minlength && !ProfilForm.street.$valid">Die Strasse darf keine Zahlenwerte enthalten.</p>
+                            <p class="text-danger" ng-show="ProfilForm.street.$error.required && ProfilForm.street.$touched">Die Strasse darf nicht leer sein.</p>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Haus-Nr</label>
+                                <input type="text" class="form-control" placeholder="Haus-Nr" name="house_nr" id="house_nr" ng-model="house_nr" required>
+                            </div>
+                            <p class="text-danger" ng-show="ProfilForm.house_nr.$error.required && ProfilForm.house_nr.$touched">Die Haus-Nr darf nicht leer sein.</p>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" class="form-control" placeholder="Email" ng-model="email">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Telefon-Nr</label>
+                                <input type="text" class="form-control" placeholder="Telefon-Nr" ng-model="telefon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Gruppe:</label>
+                                <input type="text" class="form-control" placeholder="Gruppe" ng-model="group" disabled>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Über mich</label>
+                                <textarea rows="5" class="form-control" placeholder="Muttersprache, Geschwister etc." ng-model="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Das mache ich am liebsten</label>
+                                <textarea rows="5" class="form-control" placeholder="Mit Lego spielen etc." ng-model="vorlieben"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Essensvorlieben / Allergien</label>
+                                <textarea rows="5" class="form-control" placeholder="Essensvorlieben / Allergien" ng-model="essenAllerg"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="ProfilForm.$dirty">
+                        <a class="btn btn-primary btn-fill pull-right btn-margin" ng-click="editProfil()">Profil aktualisieren</a>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>

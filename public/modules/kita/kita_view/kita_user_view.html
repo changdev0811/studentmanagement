@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-12" ng-controller="loadKitaDataCtrl">
+        <div class="card" ng-controller="kitaCtrl">
+            <div class="header text-center">
+                <h3 class="title">{{kitaname}}</h3>
+                <p class="category">Datenblatt</p>
+            </div>
+            <div class="content text-center">
+                <p class="mb-0">{{kitaEmail}}</p>
+                <address>
+                    <p>{{kitaAddress}}
+                        <br> {{kitaOrt}}, {{kitaPlz}} {{kitaKanton}}
+                        <br> T: {{kitaTelefon}}</p>
+                </address>
+                <div class="clearfix"></div>
+
+                <p>{{kitaDescription}}</p>
+
+                <div class="row" style="margin-bottom:5%;">
+                    <div class="col-md-12">
+                        <img class="avatar border-gray" src="{{uImageKita}}" style="width:300px;height:300px;" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

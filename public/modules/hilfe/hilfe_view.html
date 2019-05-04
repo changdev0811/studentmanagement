@@ -1,0 +1,45 @@
+<div class="row" ng-controller="navCtrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Hilfe</h3>
+                <p class="category">Hier erhalten Sie Informationen zur Kita-App und Supportunterstützung.</p>
+            </div>
+            <div class="content">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6" ng-if="isLogAdmin()">
+                        <div class="card" style="height:200px">
+                            <div class="header">
+                                <h4 class="title">Benutzeranleitung</h4>
+                                <p class="category">Hier können Sie die Benutzeranleitung zu SimpleVisor als .PDF herunterladen.</p>
+                            </div>
+                            <div class="content">
+                                <h5>SimpleVisor-Anleitung.pdf</h5>
+                                <a target="_blank" rel="noopener noreferrer" href="/assets/files/SimpleVisor-Anleitung.pdf" class="btn btn-primary btn-fill">
+                                    Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+                        <div class="card" style="height:200px">
+                            <div class="header">
+                                <h4 class="title">Support</h4>
+                                <p class="category">Bei Problemen oder technischen Fragen können Sie sich an die folgende Email-Adresse wenden.</p>
+                            </div>
+                            <div class="content text-center">
+                                <a href="mailto:support@simplevisor.ch">
+                                    <h4>support@simplevisor.ch</h4>
+                                </a>
+                               <div style="margin-left:25%;width:50%;height:2px;background-color:#0099ff"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

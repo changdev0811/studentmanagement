@@ -1,0 +1,348 @@
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="bootstrapModal" aria-hidden="true" ng-controller="loadKitaModalDataCtrl">
+    <div class="modal-dialog" role="document" ng-class="{largeWidth: modalLink === 'DailyRoutine'}">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="resetRootScope()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h3 class="modal-title" id="bootstrapModal">{{modalTitle}}</h3>
+
+            </div>
+            <div class="modal-body">
+                <h3 ng-if="modalLink2 === 'firstLogOn'" class="bold">
+                    <strong>Hallo {{modalFullnameFirst}}!</strong>
+                </h3>
+
+
+                <div class="row" ng-if="modalLink2 === 'firstLogOn' || modalLink === 'createUserPDF' || modalLink2 === 'pwChangeUser' || modalLink === 'editPw' || modalLink === 'pwChange' || modalLink === 'dailyStatusAddActions' || modalLink === 'ActionImage' || modalLink === 'dailyStatusAddKids' || modalLink === 'dailyStatusLeave' || modalLink === 'dailyStatusOnline' || modalLink === 'dailyStatusOffline' || modalLink === 'dailyStatusActive' || modalLink === 'editEvent' || modalLink === 'newEvent' || modalLink === 'editUser' || modalLink === 'deleteUser' || modalLink === 'editProfilPic'">
+                    <div class="col-md-12">
+
+                        <h3 ng-if="modalLink2 === 'firstLogOn'">Herzlich Willkommen bei SimpleVisor.</h3>
+                        <p ng-if="modalLink2 === 'firstLogOn'">Da dies eine "Erst-Anmeldung" ist, bitten wir darum, dass von uns generierte Passwort des Accounts
+                            aus Sicherheitszwecken zu ändern. Vielen Dank.</p>
+                        <p ng-if="modalLink2 === 'firstLogOn'">Die Passwortänderung kann auf der nachfolgenden Seite bei der Rubrik
+                            <strong>Sicherheit</strong> durchgeführt werden. Nach der Änderung müssen Sie sich einmal ab- und anmelden
+                            und der Account ist fertig eingerichtet.</p>
+                        <br>
+                        <p ng-if="modalLink2 === 'firstLogOn'">Beim klick auf das Profil-Bild auf der Profil-Seite, können Sie noch ein eigenes Bild hochladen.</p>
+                        <br>
+                        <p ng-if="modalLink2 === 'firstLogOn'">Wir wünschen viel Spass und Freude bei der Benutzung der App. :-)</p>
+                        <img ng-if="modalLink2 === 'firstLogOn'" class="maintenance" src="assets/img/butterflies.jpg">
+                        <p ng-if="modalLink != null">{{modalBody}}</p>
+                        <p ng-if="modalLink === 'dailyStatusOffline' || modalLink === 'dailyStatusOnline' || modalLink === 'dailyStatusLeave'">{{modalBody1}}
+                            <strong>{{modalFullname}}</strong>{{modalBody2}}</p>
+                        <form ng-if="modalLink === 'editEvent' || modalLink === 'newEvent'">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Beschreibung/Titel</label>
+                                        <input type="text" class="form-control" id="eventName" placeholder="Beginn" ng-model="eventName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Startdatum</label>
+                                        <input type="date" class="form-control" id="startDate" placeholder="Beginn" ng-model="startDate" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Startzeit</label>
+                                        <input type="time" class="form-control" id="startTime" placeholder="Startzeit" ng-model="startTime">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Enddatum</label>
+                                        <input type="date" class="form-control" id="endDate" placeholder="Ende" ng-model="endDate" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Endzeit</label>
+                                        <input type="time" class="form-control" id="endTime" placeholder="Endzeit" ng-model="endTime">
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- <input type="text" class="form-control" placeholder="Endzeit" ng-model="endTime2"> -->
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Textfarbe</label>
+                                        <input type="color" id="fColor" class="form-control" placeholder="Font Color" ng-model="fColor" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Hintergrundfarbe</label>
+                                        <input type="color" id="bColor" class="form-control" placeholder="Background Color" ng-model="bColor">
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ng-if="modalLink2 === 'editProfilPic'" ng-controller="loadKitaModalDataCtrl">
+
+                            <!-- Croppie needs a container -> using 'boundary' option -->
+                            <div class="text-center">
+
+                                <form>
+                                    <label class="btn btn-default btn-fill">
+                                        Auswählen
+                                        <input type="file" id="upload" file-model="file" name="myFile" ng-disabled="uploading" style="display: none;" accept="image/*">
+                                    </label>
+                                </form>
+
+                                <br>
+                                <croppie ng-if="cropped.source" src="cropped.source" ng-model="cropped.image" options="{boundary:{width:370,height:370},viewport:{width:340,height:340}}"></croppie>
+
+                                <br>
+                                <br> Vorschau :
+                                <br>
+                                <img id="croppedImage" ng-src="{{cropped.image}}" />
+
+                            </div>
+
+                            <br>
+                            <div ng-show="message">
+                                <div ng-class="alertUpload">{{ message }}</div>
+                            </div>
+                            <div ng-show="uploading" class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                    style="width: 100%;"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div ng-if="modalLink2 === 'dailyStatusAddKids'" ng-controller="loadKitaModalDataCtrl">
+
+                            <div class="row" style="width:90%;margin-left:5%;" ng-repeat="kid in kidsRest" ng-style="kid.colorSelected">
+                                <p ng-if="kids.length == 0">Diese Gruppe enthält keine weiteren Kinder.</p>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" ng-style="kid.colorSelected">
+                                    <div ng-style="kid.colorSelected" ng-click="selectKid(kid)" ui-sref="">
+                                        <img style="width: 75px; height:75px; margin-left: 1em;margin-top: 1em;margin-bottom: 1em;" src="{{kid.uImage}}">
+                                    </div>
+                                </div>
+                                <div style="background-color:#0074c2;height:1px;"></div>
+                                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" ng-style="kid.colorSelected">
+                                    <div ng-style="kid.colorSelected" style="height:100%;" ng-click="selectKid(kid)" ui-sref="">
+                                        <h4 style="margin-left: 1em;margin-top: 10%;">
+                                            <b>{{kid.fullname}}</b>
+                                        </h4>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div ng-if="modalLink2 === 'ActionImage'">
+
+                            <img src="{{ActionImageKid}}" style="width:500px;height:500px;margin-bottom:10%" />
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div ng-if="modalLink === 'dailyStatusAddActions'" ng-controller="loadKitaModalDataCtrl">
+
+                            <h4>Aktivität Morgen:</h4>
+                            <div style="margin-top:2px;">
+                                <div class="selectDiv">
+                                    <select class="select" name="slct" id="ActionSelMorgSel" ng-options="action.value as action.text for action in actions" ng-model="ActionSelMorgSel"></select>
+                                </div>
+                            </div>
+
+                            <h4 style="margin-top:10px;">Aktivität Nachmittag:</h4>
+                            <div style="margin-bottom:10px;">
+                                <div class="selectDiv">
+                                    <select class="select" name="slct" id="ActionSelNachmSel" ng-options="action.value as action.text for action in actions"
+                                        ng-model="ActionSelNachmSel"></select>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div ng-if="modalLink === 'updateActions'" ng-controller="kitaCtrl">
+
+                            <div class="row">
+
+                                <div class="col-md-12">
+
+                                    <div class="row">
+                                        <div class="col-md-12 text-center">
+                                            <div class="form-group">
+                                                <label>Name der Aktivität</label>
+                                                <input type="text" class="form-control text-center" id="NameActionNew" placeholder="Name" ng-model="modalActionName">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="clearfix"></div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form name="ActionForm">
+
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+
+                                                <label>Bild</label>
+                                                <br>
+                                                <img src="{{uImageAction}}">
+                                                </br>
+                                                </br>
+                                                </br>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div class="row" ng-show="!newActionIMGbol">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" ng-click="newActionIMG()" class="btn btn-primary btn-fill">Neues Bild</button>
+                                    </br>
+                                    </br>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12" ng-show="newActionIMGbol">
+                                    <!-- Croppie needs a container -> using 'boundary' option -->
+                                    <div class="text-center">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form>
+                                                    <label class="btn btn-default btn-fill">
+                                                        Auswählen
+                                                        <input type="file" id="upload" file-model="file" name="myFile" ng-disabled="uploading" style="display: none;" accept="image/*">
+                                                    </label>
+                                                </form>
+
+                                                <br>
+                                                <croppie ng-if="cropped.source" src="cropped.source" ng-model="cropped.image" options="{boundary:{width:500,height:500},viewport:{width:470,height:470}}"></croppie>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>Vorschau :</h4>
+                                                <br>
+
+                                                <img id="croppedImage" ng-src="{{cropped.image}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div style="" ng-show="message">
+                                        <div ng-class="alertUpload">{{ message }}</div>
+                                    </div>
+                                    <div ng-show="uploading" class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 60%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+
+                    <button ng-if="modalLink === 'pwChange'" type="button" class="btn btn-primary btn-fill" ng-click="resetPWconfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'createUserPDF'" type="button" class="btn btn-primary btn-fill" ng-click="createUserPDF(true)" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink2 === 'firstLogOn' || modalLink2 === 'pwChangeUser'" type="button" class="btn btn-primary btn-fill"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'updateActions'" type="button" class="btn btn-primary btn-fill" ng-click="updateAction()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'dailyStatusAddActions'" type="button" class="btn btn-primary btn-fill" ng-click="updateAllActionKids()"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'updateActions'" type="button" class="btn btn-danger btn-fill" ng-click="deleteAction()" data-dismiss="modal">Löschen</button>
+
+                    <button ng-if="modalLink === 'dailyStatusOnline'" type="button" class="btn btn-success btn-fill table-add" ng-click="setStatusOnline()"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'dailyStatusOffline'" type="button" class="btn btn-danger btn-fill" ng-click="setStatusOffline()"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'dailyStatusAddKids'" ng-show="kidAddSelected" type="button" class="btn btn-primary btn-fill"
+                        ng-click="dailyStatusAddKids()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'dailyStatusLeave'" type="button" class="btn btn-primary btn-fill table-add" ng-click="setStatusLeave()"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'dailyStatusOffline'" type="button" class="btn btn-primary btn-fill table-add" ng-click="setStatusNeutral()"
+                        data-dismiss="modal">Zurücksetzen</button>
+
+                    <button ng-if="modalLink2 === 'editPw'" type="button" class="btn btn-primary btn-fill" ng-click="editPwConfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'deleteUser'" type="button" class="btn btn-danger btn-fill" ng-click="deleteUserConfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'editEvent'" type="button" class="btn btn-danger btn-fill" ng-click="deleteEventConfirm()" data-dismiss="modal">Löschen</button>
+
+                    <button ng-if="modalLink === 'editEvent'" type="button" class="btn btn-primary btn-fill" ng-click="editEventConfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'newEvent'" type="button" class="btn btn-primary btn-fill" ng-click="newEventConfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'editUser'" type="button" class="btn btn-primary btn-fill" ng-click="editUserConfirm()" data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink === 'editProfilPic'" type="button" class="btn btn-primary btn-fill" ng-show="!uploadSuccess" ng-click="SubmitProfilImg()">Bild hochladen</button>
+                    <button ng-if="modalLink === 'editProfilPic'" type="button" class="btn btn-primary btn-fill" ng-show="uploadSuccess" data-dismiss="modal"
+                        ng-click="editProfilPicConfirm()">{{modalSuccesBtn}}</button>
+
+                    <button ng-if="modalLink2 != 'firstLogOn' && modalLink != 'ActionImage' && modalLink2 != 'pwChangeUser'" type="button" class="btn btn-secondary btn-fill"
+                        ng-click="resetRootScope()" data-dismiss="modal">Abbrechen</button>
+
+                    <button ng-if="modalLink === 'ActionImage'" type="button" class="btn btn-secondary btn-fill" ng-click="resetRootScope2()"
+                        data-dismiss="modal">{{modalSuccesBtn}}</button>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

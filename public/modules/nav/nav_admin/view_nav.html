@@ -1,0 +1,151 @@
+<ul class="nav" ng-controller="navCtrl">
+    <li ng-if="isLog()">
+        <div class="user">
+            <div class="photo">
+                <img src="{{profilPathImg}}" style="width: 100px">
+            </div>
+        </div>
+    </li>
+</ul>
+
+<ul class="nav" style="margin-top:2%;" ng-controller="navCtrl">
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="profil">
+            <div style="margin-left:20%">
+                <i class="pe-7s-user"></i>
+                <p>{{username}}</p>
+            </div>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="profilAdmin">
+            <div style="margin-left:20%">
+                <i class="pe-7s-user"></i>
+                <p>{{username}}</p>
+            </div>
+        </a>
+    </li>
+</ul>
+
+<ul class="nav" style="margin-top:2%;" ng-controller="navCtrl">
+    <li class="user-nav navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()" ng-click="navClicked()">
+        <a ui-sref="start">
+            <i class="pe-7s-clock"></i>
+            <p>Tagesheft</p>
+        </a>
+    </li>
+    <li class="user-nav navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="startUser">
+            <i class="pe-7s-clock"></i>
+            <p>Tagesheft</p>
+        </a>
+    </li>
+    <!--  <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <span class="notify-badge" ng-show="teacher.badge > 0">{{teacher.badge}}</span>
+        <a ui-sref="ChatView">
+            <i class="pe-7s-chat"></i>
+            <p>Chat</p>
+        </a>
+    </li> -->
+    <!-- <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="kalender">
+            <i class="pe-7s-date"></i>
+            <p>Kalender</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="kalenderUser">
+            <i class="pe-7s-date"></i>
+            <p>Kalender</p>
+        </a>
+    </li> -->
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="archiv">
+            <i class="pe-7s-box1"></i>
+            <p>Archiv</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="archivKid">
+            <i class="pe-7s-box1"></i>
+            <p>Archiv</p>
+        </a>
+    </li>
+
+    <!-- <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="simpleProgressAdm">
+            <i class="pe-7s-graph1"></i>
+            <p>SimpleProgress</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="simpleProgress">
+            <i class="pe-7s-graph1"></i>
+            <p>SimpleProgress</p>
+        </a>
+    </li> -->
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="editUser">
+            <i class="pe-7s-id"></i>
+            <p>Kinder</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogAdmin()">
+        <a ui-sref="kita">
+            <i class="pe-7s-home"></i>
+            <p>{{kitaname}}</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="isLogUser()">
+        <a ui-sref="kitaUser">
+            <i class="pe-7s-home"></i>
+            <p>{{kitaname}}</p>
+        </a>
+    </li>
+    <li class="navbar-Link" ui-sref-active="active" ng-if="!isLog()">
+        <a ui-sref="login">
+            <i class="pe-7s-upload"></i>
+            <p>Login</p>
+        </a>
+    </li>
+    <li class="navbar-Link" style="position: absolute;
+    width: 100%;
+    bottom: 10px;" ui-sref-active="active" ng-if="!isLog()">
+        <a ui-sref="hilfe">
+            <i class="pe-7s-help1"></i>
+            <p>Hilfe</p>
+        </a>
+    </li>
+</ul>
+
+
+<ul class="nav nav-mobile-menu" ng-controller="navCtrl">
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="navbar-Link" ng-if="isLogUser()">
+            <a ui-sref="profil" ui-sref-active="active">
+                <i class="pe-7s-user"></i>
+                <p>Profil</p>
+            </a>
+        </li>
+        <li class="navbar-Link" ng-if="isLogAdmin()">
+            <a ui-sref="profilAdmin" ui-sref-active="active">
+                <i class="pe-7s-user"></i>
+                <p>Profil</p>
+            </a>
+        </li>
+        <li class="navbar-Link" ui-sref-active="active" ng-if="isLog()">
+          <a ui-sref="hilfe">
+            <i class="pe-7s-help1"></i>
+            <p>Hilfe</p>
+          </a>
+        </li>
+        <li class="navbar-Link" ng-if="isLog()">
+        <a ui-sref="login" ng-click="logout()">
+            <i class="pe-7s-back-2"></i>
+            <p>Log out</p>
+        </a>
+        </li>
+        <li class="separator hidden-lg"></li>
+    </ul>
+</ul>

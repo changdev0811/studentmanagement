@@ -1,0 +1,79 @@
+<div class="row" ng-controller="NotificationListCtrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Feedbacks</h3>
+                <p class="category">Durchsuchen Sie alle ungelesenen oder gelesenen Feedbacks.</p>
+            </div>
+            <div class="content">
+                <div class="row">
+                     <div class="col-md-12" style="margin-top: 1em;">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="pull-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Ungelesene</button>
+                                            <button type="button" class="btn btn-success btn-filter" data-target="pagado">Gelesene</button>
+                                            <button type="button" class="btn btn-info btn-filter" data-target="all">Alle</button>
+                                        </div>
+                                    </div>
+                                    <div class="table-container">
+                                        <table class="table table-filter">
+                                            <tbody>
+                                                <tr data-status="{{notify.dataStatus}}" ng-repeat="notify in notifications">
+                                                    <td>
+                                                        <a href="javascript:;" class="star">
+                                                            <i ng-if="notify.messageRead == false" class="fa fa-eye"></i>
+                                                            <i ng-if="notify.messageRead == true" class="fa fa-eye star-checked"></i>
+                                                        </a>
+                                                    </td>
+                                                    <td>
+                                                        <div ng-click="itemClick(notify)" class="media">
+                                                            <a class="pull-left">
+                                                                <img src="{{notify.senderImg}}" class="media-photo">
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <span class="media-meta pull-right">{{notify.fbTime}}</span>
+                                                                <h4 class="title">
+                                                                    {{notify.fbTitle}}
+                                                                    <span ng-if="notify.messageRead == 1" class="pull-right pagado">( Gelesen )</span>
+                                                                    <span ng-if="notify.messageRead == 0" class="pull-right pendiente">( Ungelesen )</span>
+                                                                </h4>
+                                                                <p class="summary">{{notify.fbContent}}</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myFeedbackModal" role="dialog">
+                    <div class="modal-dialog modal-md">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title" id="mtitle">Modal Header</h4>
+                            </div>
+                            <div class="modal-body">
+                              
+                                    <pre class="form-control-textarea" id="mcontent">This is a small modal.</pre>
+                               
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" ng-click="onRead()" class="btn btn-success" data-dismiss="modal">Gelesen</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

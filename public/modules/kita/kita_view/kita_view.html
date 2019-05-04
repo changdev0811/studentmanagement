@@ -1,0 +1,219 @@
+<div class="row" ng-controller="kitaCtrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Meine Kita</h3>
+                <p class="category">Führen Sie unterschiedliche Aktionen für Ihre Kita durch.</p>
+            </div>
+            <div class="content">
+                <div class="row">
+
+                    <div class="col-md-4">
+                        <div class="card actions actions-light">
+                            <div class="actions-padding">
+                                <h4>Neue Kita-Kinder hinzufügen</h4>
+                                <a ui-sref="register" class="btn btn-primary  btn-fill">
+                                    <i class="pe-7s-add-user" style="font-size: 4em; color:#ffffff;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card actions">
+                            <div class="actions-padding">
+                                <h4>Kita-Aktivitäten verwalten</h4>
+                                <a ui-sref="kitaActions" class="btn btn-primary2 btn-fill">
+                                    <i class="pe-7s-way" style="font-size: 4em; color:#ffffff;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card actions">
+                            <div class="actions-padding">
+                                <h4>Stunden-Rapporte ausgeben</h4>
+                                <a ui-sref="hoursUser" class="btn btn-primary2 btn-fill">
+                                    <i class="pe-7s-wristwatch" style="font-size: 4em; color:#ffffff;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12" ng-controller="loadKitaDataCtrl">
+        <div class="card" ng-controller="kitaCtrl">
+            <div class="header">
+                <h3 class="title">{{kitaname}}</h3>
+                <p class="category">Datenblatt</p>
+            </div>
+            <div class="content">
+                <form name="KitaForm">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Kita ID</label>
+                                <input type="text" class="form-control" disabled placeholder="Kita-Id" ng-model="kitaid">
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <div class="form-group">
+                                <label>Kita-Name</label>
+                                <input type="text" class="form-control" placeholder="Kita-Name" ng-model="kitaname">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email</label>
+                                <input type="email" class="form-control" placeholder="Email" ng-model="kitaEmail">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Telefon-Nr</label>
+                                <input type="text" class="form-control" placeholder="Telefon" ng-model="kitaTelefon">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Stadt/Ort</label>
+                                <input type="text" class="form-control" placeholder="Ort" ng-model="kitaOrt">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Kanton</label>
+                                <input type="text" class="form-control" placeholder="Kanton" ng-model="kitaKanton">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>PLZ</label>
+                                <input type="number" class="form-control" placeholder="PLZ" ng-model="kitaPlz">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Adresse</label>
+                                <input type="text" class="form-control" placeholder="Adresse" ng-model="kitaAddress">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Über Kita</label>
+                                <textarea rows="5" class="form-control" placeholder="Beschreibung etc." ng-model="kitaDescription"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <a ng-if="KitaForm.$dirty" class="btn btn-primary btn-fill pull-right btn-margin" ng-click="edit()">Daten aktualisieren</a>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <form name="ActionForm">
+
+                                        <div class="row">
+                                            <div class="col-md-12 text-center">
+
+                                                <label>Bild</label>
+                                                <br>
+                                                <img src="{{uImageKita}}">
+                                                </br>
+                                                </br>
+                                                </br>
+                                            </div>
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <div class="row" ng-show="!newKitaIMGbol">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" ng-click="newKitaIMG()" class="btn btn-primary btn-fill">Neues Bild</button>
+                                    </br>
+                                    </br>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12" ng-show="newKitaIMGbol">
+                                    <!-- Croppie needs a container -> using 'boundary' option -->
+                                    <div class="text-center">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <form>
+                                                    <label class="btn btn-default btn-fill">
+                                                        Auswählen
+                                                        <input type="file" id="upload" file-model="file" name="myFile" ng-disabled="uploading" style="display: none;" accept="image/*">
+                                                    </label>
+                                                </form>
+
+                                                <br>
+                                                <croppie ng-if="cropped.source" src="cropped.source" ng-model="cropped.image" options="{boundary:{width:400,height:400},viewport:{width:390,height:390}}"></croppie>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>Vorschau :</h4>
+                                                <br>
+
+                                                <img id="croppedImage" ng-src="{{cropped.image}}" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 text-center">
+                                    <div style="" ng-show="message">
+                                        <div ng-class="alertUpload">{{ message }}</div>
+                                    </div>
+                                    <div ng-show="uploading" class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                            style="width: 60%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" ng-show="newKitaIMGbol">
+                                    <div class="col-md-12 text-center">
+                                        <a class="btn btn-primary btn-fill pull-right btn-margin" ng-click="uploadKitaIMG()">Hochladen</a>
+                                    </div>
+                                </div>
+
+                        </div>
+                    </div>
+
+                    
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

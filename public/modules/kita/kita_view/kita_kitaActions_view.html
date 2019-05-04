@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Kita-Aktivitäten</h3>
+                <p class="category">Hier können Aktivitäten Ihrer Kita erfasst werden und im Tagesheft zugewiesen werden.</p>
+            </div>
+            <div class="content" ng-controller="kitaCtrl">
+                <div class="row">
+
+                    <div class="col-md-0 col-lg-3">
+
+                    </div>
+                    <div class="col-md-12 col-lg-6">
+                        <form name="ActionForm">
+
+                            <div class="form-group">
+                                <label>Name der Aktivität</label>
+                                <input type="text" class="form-control" placeholder="Name" ng-model="actionName">
+                            </div>
+                        </form>
+
+                    </div>
+                    <div class="col-md-0 col-lg-3">
+
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- Croppie needs a container -> using 'boundary' option -->
+                        <div class="text-center">
+                            <div class="row">
+
+                                <div class="col-md-12 col-lg-12">
+                                    <form>
+                                        <label class="btn btn-default btn-fill">
+                                            Auswählen
+                                            <input type="file" id="upload" file-model="file" name="myFile" ng-disabled="uploading" style="display: none;" accept="image/*">
+                                        </label>
+                                    </form>
+
+                                    <br>
+                                    <croppie ng-if="cropped.source" src="cropped.source" ng-model="cropped.image" options="{boundary:{width:500,height:500},viewport:{width:470,height:470}}"></croppie>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                                <div class="col-md-12 col-lg-12">
+                                    <h2>Vorschau :</h2>
+                                    <br>
+
+                                    <img id="croppedImage" ng-src="{{cropped.image}}" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <div style="" ng-show="message">
+                            <div ng-class="alertUpload">{{ message }}</div>
+                        </div>
+                        <div ng-show="uploading" class="progress">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuemin="0" aria-valuemax="100"
+                                style="width: 60%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <a class="btn btn-primary btn-fill pull-right btn-margin" ng-click="createAction()">Erfassen</a>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="row" style="margin-top: 1em;">
+                            <p ng-if="actions.lenghth == 0">Es wurde noch keine Aktivität erfasst.</p>
+                            <div class="col-xs-12 col-sm-6 col-md-5 col-lg-3 text-center" ng-repeat="action in actions">
+                                <div ng-style="action.colorSelected" class="card" style="padding: 1em;max-height:400px;" ng-click="showAction(action)">
+                                    <img class="card-img-top img-circle" style="width: 150px; height:150px; margin-top: 1em;" src="{{action.uImage}}" alt="Card image cap">
+                                    <div class="card-body">
+                                        <h5 class="card-title" style="margin-top: 1em;">
+                                            <b>{{action.name}}</b>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

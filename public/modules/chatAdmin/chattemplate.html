@@ -1,0 +1,71 @@
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+        <div class="row chat-window col-xs-5 col-md-3 {{vm.theme}}" ng-class="{minimized: vm.isHidden}">
+            <div class="col-xs-12 col-md-12">
+                <div class="panel">
+                    <div class="panel-heading chat-top-bar">
+                        <div class="col-md-12 col-xs-12">
+                            <h3 class="panel-title"> {{vm.title}}</h3>
+                            <br>
+                            <h2 class="panel-title float-left"><span class="fa fa-comment-o"></span> {{vm.selectedUserName}}</h2>
+                        </div>
+                    </div>
+                    <div class="panel-body msg-container-base" ng-style="vm.panelStyle" style="height: 600px;">
+                        <div class="row msg-container" ng-repeat="message in vm.messages" ng-init="selfAuthored = vm.myUserId == message.fromUserId">
+                            <div class="col-md-12 col-xs-12">
+                                <div class="chat-msg" ng-class="{'chat-msg-sent': selfAuthored, 'chat-msg-recieved': !selfAuthored}">
+                                    <span class="hide">myUserId:{{vm.myUserId}}</span>
+                                    <img ng-if="message.imageUrl" class="profile" ng-class="{'pull-right': selfAuthored, 'pull-left': !selfAuthored}" ng-src="{{message.imageUrl}}" style="width:45px; height: 45px; margin-right: 15px;border-radius: 50%;"/>
+                                    <p class="medium-text">{{message.content}}</p>
+                                    <div class="chat-msg-author small-text text-right">
+                                        <span class="date">{{message.date|date:hh:mm:a}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer chat-bottom-bar">
+                        <form style="display:inherit" ng-submit="vm.submitFunction()">
+                            <div class="input-group" >
+                                <input type="text" class="form-control input-sm" placeholder="{{vm.inputPlaceholderText}}" ng-model="vm.writingMessage" />
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-sm chat-submit-button" value="{{vm.submitButtonText}}" />
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3" >
+        <div class="row" style="margin-bottom: 1em;">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <span>Suche : &nbsp;<input class="searchValue" type="text" style="width: 75%;" ng-model="sv" /></span> 
+            </div>
+        </div>        
+        <div style="overflow:scroll; height:700px;">
+            <ul class="list-group" id="contact-list">
+                <li class="list-group-item" style="margin-top: 5px; cursor: pointer;" ng-repeat="member in vm.members | filter : sv" ng-click="selectItem(member)">
+				  <div class="row center-block" style="display: table; width:100%; margin-top: 20px;">
+                        <div class="col-xs-12 col-sm-12 col-md-12 " >
+                            <img src="{{member.uImage}}" alt="{{member.uName}}" class="img-circle center-block" style="width:auto; height:100px;" />
+                        </div>
+                    </div>
+                    <div class="row center-block" style="display: table; width:100%;">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="display: table-cell; vertical-align: middle; line-height: 40px; text-align:center;">
+                            <span class="name">{{member.uName}}</span>
+                        </div>
+                    </div>
+                    <div class="row center-block" style="display: table; width:100%;">
+                        <div class="col-xs-12 col-sm-12 col-md-12" style="display: table-cell; vertical-align: middle; line-height: 10px; text-align:center;">
+                            <i class="pe-7s-look" style="font-size: 40px; color:{{member.uColor}};"></i>    
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+

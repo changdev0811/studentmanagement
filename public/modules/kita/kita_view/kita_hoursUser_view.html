@@ -1,0 +1,257 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Kita-Monatsrapport</h3>
+            </div>
+            <div class="content" ng-controller="kitaCtrl">
+
+                <div ng-controller="loadKitaDataCtrl">
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-lg-6">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Kinder Stundenrapport</h4>
+                                    <p class="category">Hier können die monatlichen Stunden jedes Kindes rapportiert werden.</p>
+                                </div>
+                                <div class="content">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="sel1">Gruppe auswählen</label>
+                                                <div class="selectDiv">
+                                                    <select class="select" ng-model="groupSelected" ng-options="group.groupname for group in Groups track by group._id" ng-change="loadUsers(groupSelected._id)"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Benutzer auswählen</label>
+                                                <div class="selectDiv">
+                                                    <select class="select" ng-model="userSelected" ng-options="user.name for user in Users track by user._id"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Monatsauswahl</label>
+                                                <input style="border-color:#0099ff" type="month" class="form-control" id="selectedDate" placeholder="Datum" ng-model="selectedMonth" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label>Normaler-Tag</label>
+                                                <div style="color:rgba(29, 170, 29, 0.755)">
+                                                    <i class="pe-7s-menu" style="font-size: 4em; color:rgba(29, 170, 29, 0.755)"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label>Zusatz-Tag</label>
+                                                <div style="color:#eb5600bd;">
+                                                    <i class="pe-7s-menu" style="font-size: 4em; color:#eb5600bd;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                            <div class="form-group">
+                                                <label>Eingewöhnungs-Tag</label>
+                                                <div style="color:#267ace;">
+                                                    <i class="pe-7s-menu" style="font-size: 4em; color:#267ace;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row" style="margin-bottom:30px">
+
+
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table">
+                                                        <table class="table table3 table-editable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cellWidth">Datum</th>
+                                                                    <th class="cellWidth">Zeit (von - bis)</th>
+                                                                    <th class="cellWidth text-right">Stunden</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="dayKid in daysKid">
+                                                                <tr>
+                                                                    <td ng-style="dayKid.colorRow">{{dayKid.date}}</td>
+                                                                    <td ng-style="dayKid.colorRow">{{dayKid.kommen}} - {{dayKid.gehen}}</td>
+                                                                    <td ng-style="dayKid.colorRow" class="text-right">{{dayKid.hoursActive}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="">
+
+                                                        <table class="table table3 table-editable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cellWidth" style="color:white;">Datum</th>
+                                                                    <th class="cellWidth" style="color:white">Zeit (von - bis)</th>
+                                                                    <th class="cellWidth text-right" style="font-weight:bold;">Total</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td></td>
+                                                                    <td></td>
+                                                                    <td class="text-right">{{countHours}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <a class="btn btn-primary btn-fill pull-right btn-margin" ng-click="getStunden()">Stunden auswerten</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-md-12 col-lg-6">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Auswertung Spezialtage</h4>
+                                    <p class="category">Hier können die monatlichen Spezialtage jeder Gruppe rapportiert werden.</p>
+                                </div>
+                                <div class="content">
+
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="sel1">Gruppe auswählen</label>
+                                                <div class="selectDiv">
+                                                    <select class="select" ng-model="groupSelected" ng-options="group.groupname for group in Groups track by group._id" ng-change="loadUsers(groupSelected._id)"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Tagestyp auswählen</label>
+                                                <div class="selectDiv">
+                                                    <select class="select" name="slct" ng-options="dayType.value as dayType.text for dayType in dayTypes" ng-model="dayTypeSelected"></select>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Monatsauswahl</label>
+                                                <input type="month" style="border-color:#0099ff" class="form-control" id="selectedDate" placeholder="Datum" ng-model="selectedMonth" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row text-center">
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="form-group">
+                                                <label>Zusatz-Tag</label>
+                                                <div style="color:#eb5600bd;">
+                                                    <i class="pe-7s-menu" style="font-size: 4em; color:#eb5600bd;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                                            <div class="form-group">
+                                                <label>Eingewöhnungs-Tag</label>
+                                                <div style="color:#267ace;">
+                                                    <i class="pe-7s-menu" style="font-size: 4em; color:#267ace;"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="margin-bottom:30px">
+
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="table">
+                                                        <table class="table table3 table-editable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th class="cellWidth">Name</th>
+                                                                    <th class="cellWidth">Datum</th>
+                                                                    <th class="cellWidth">Zeit (von - bis)</th>
+                                                                    <th class="cellWidth text-right">Stunden</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody ng-repeat="dayKid in daysKid2">
+                                                                <tr>
+                                                                    <td ng-style="dayKid.colorRow">{{dayKid.name}}</td>
+                                                                    <td ng-style="dayKid.colorRow">{{dayKid.date}}</td>
+                                                                    <td ng-style="dayKid.colorRow">{{dayKid.kommen}} - {{dayKid.gehen}}</td>
+                                                                    <td ng-style="dayKid.colorRow" class="text-right">{{dayKid.hoursActive}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <a class="btn btn-primary btn-fill pull-right btn-margin" ng-click="getStundenExt()">Tage auswerten</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>

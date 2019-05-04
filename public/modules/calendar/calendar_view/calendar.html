@@ -1,0 +1,35 @@
+<div class="row" ng-controller="calendarCtrl">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="header">
+                <h3 class="title">Kalender</h3>
+                <p class="category">Übersicht Termine, Events, etc.</p>
+            </div>
+            <div class="content">
+                <div class="row" style="margin-bottom:2%;">
+                    <div class="col-sm-4 col-md-4">
+                        <h4 style="margin-top:0px;">Gruppenauswahl:</h4>
+                        <div class="selectDiv selectDivDefault">
+                            <select class="select" name="slct" id="slct" ng-options="kita.value as kita.text for kita in kitas" ng-model="selected" ng-change="hasChanged()">
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div ng-if="windowWidth > 1025">
+                            <div ui-calendar="uiConfig.calendar" calendar="myCalendar" ng-model="eventSources"></div>
+                        </div>
+                        <div ng-if="windowWidth < 1025 && windowWidth > 767">
+                            <div ui-calendar="uiConfig.calendarPad" calendar="myCalendar" ng-model="eventSources"></div>
+                        </div>
+                        <div ng-if="windowWidth < 767">
+                            <div ui-calendar="uiConfig.calendarMobile" calendar="myCalendar" ng-model="eventSources"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
